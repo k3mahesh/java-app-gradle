@@ -22,7 +22,7 @@ node {
         repo_ssh_url                    : '',
         repo_branch                     : 'main',
         source_code_path                : '',                                       // sub-directory inside repo; leave '' for root
-        jenkins_git_creds_id            : 'github-token-credentials-id',           // Jenkins credential ID (secret text / user+token)
+        jenkins_git_creds_id            : 'k3mahesh-cred',           // Jenkins credential ID (secret text / user+token)
         jenkins_git_ssh_key_id          : '',
         ssh_private_key_location        : '',
 
@@ -94,7 +94,7 @@ node {
         dockle_report_publish           : true,
 
         // ── POST-BUILD: IMAGE SIZE VALIDATOR ───────────────────────────────
-        image_size_validator_check      : false,
+        image_size_validator      : false,
         max_allowed_image_size          : '500',                                    // in MB
         fail_job_if_validation_fail     : false,
 

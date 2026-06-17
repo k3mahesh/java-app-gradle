@@ -1,7 +1,5 @@
 @Library('shared-library') _
 
-@Library('ot-central-ci') _
-
 def cipipeline = new opstree.ci.templates.java_ci.java_ci()
 
 node {

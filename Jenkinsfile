@@ -4,8 +4,6 @@ def cipipeline = new opstree.ci.templates.java_ci.java_ci()
 
 node {
     cipipeline.call([
-
-        // ── WORKSPACE MANAGEMENT ────────────────────────────────────────────
         clean_workspace                 : true,
         ignore_clean_workspace_failure  : false,
         delete_dirs                     : true,
@@ -15,10 +13,8 @@ node {
         clean_when_build_succeed        : true,
         clean_when_build_unstable       : true,
 
-        // ── VCS / GIT CHECKOUT ──────────────────────────────────────────────
-        // Using HTTP + token-based authentication (jenkins_git_creds_id holds the token credential)
         repo_url_type                   : 'http',
-        repo_https_url                  : 'https://github.com/your-org/your-app.git',
+        repo_https_url                  : 'https://github.com/k3mahesh/java-app-gradle.git',
         repo_ssh_url                    : '',
         repo_branch                     : 'main',
         source_code_path                : '',                                       // sub-directory inside repo; leave '' for root
@@ -26,17 +22,13 @@ node {
         jenkins_git_ssh_key_id          : '',
         ssh_private_key_location        : '',
 
-        // ── BUILD PARAMETER OVERRIDE ────────────────────────────────────────
-        // Set true to allow Jenkins build parameters to override any value at runtime
         enable_jenkins_build_param_override : false,
 
-        // ── PRE-BUILD: CREDENTIALS SCANNING (Gitleaks) ─────────────────────
         gitleaks_check                  : false,
         fail_job_if_leak_detected       : true,
         gitleaks_report_format          : 'json',
         gitleaks_report_jenkins_publish : true,
 
-        // ── PRE-BUILD: DEPENDENCY SCANNING (OWASP) ─────────────────────────
         dependency_check                          : false,
         dependency_scan_tool                      : 'owasp',
         owasp_project_name                        : 'your-app',
@@ -46,10 +38,6 @@ node {
         pom_location                              : '',
         app_stack                                 : 'java',
 
-        // ── BUILD ARTIFACT (Gradle) ─────────────────────────────────────────
-        // build_artifact.groovy runs Gradle inside Docker based on java_version:
-        //   java_version=11  → gradle:7.5-jdk11
-        //   java_version=17  → gradle:7.5-jdk17
         perform_code_build              : true,
         build_tool                      : 'gradle',
         java_version                    : '17',
